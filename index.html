@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Happy Cake — Портал франчайзи. Актуальная информация о развитии сети.">
+  <title>Happy Cake — Портал франчайзи</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Блок 1: Hero -->
+  <header class="hero" id="hero">
+    <div class="container">
+      <span class="pill" id="hero-status">Загрузка…</span>
+      <h1 id="hero-title">Happy Cake — Портал франчайзи</h1>
+      <p class="hero-subtitle" id="hero-subtitle">Информация о развитии сети</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Блок 2: Что сейчас делаем -->
+    <section id="current-work" aria-label="Текущая работа">
+      <h2 class="section-title">Что сейчас делаем</h2>
+      <div class="card-grid" id="current-work-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Блок 3: Что ожидаем от франчайзи -->
+    <section id="expectations" aria-label="Ожидания от франчайзи">
+      <h2 class="section-title">Что ожидаем от франчайзи</h2>
+      <div class="card-grid expectations-grid" id="expectations-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Блок 4: Последние изменения -->
+    <section id="changelog" aria-label="Последние изменения">
+      <h2 class="section-title">Последние изменения</h2>
+      <div class="timeline" id="changelog-list">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Блок 5: Обратная связь -->
+    <section id="feedback" aria-label="Обратная связь">
+      <h2 class="section-title">Обратная связь</h2>
+      <p class="section-desc">Есть вопрос или предложение? Напишите нам — мы читаем каждое сообщение.</p>
+      <form id="feedback-form" method="POST" class="feedback-form">
+        <div class="form-group">
+          <label for="field-name" class="sr-only">Имя</label>
+          <input
+            type="text"
+            id="field-name"
+            name="name"
+            placeholder="Имя"
+            required
+            autocomplete="name"
+            aria-label="Ваше имя"
+          >
+        </div>
+        <div class="form-group">
+          <label for="field-city" class="sr-only">Город</label>
+          <input
+            type="text"
+            id="field-city"
+            name="city"
+            placeholder="Город"
+            required
+            autocomplete="address-level2"
+            aria-label="Ваш город"
+          >
+        </div>
+        <div class="form-group">
+          <label for="field-message" class="sr-only">Сообщение</label>
+          <textarea
+            id="field-message"
+            name="message"
+            placeholder="Ваш вопрос или предложение"
+            required
+            rows="4"
+            aria-label="Ваше сообщение"
+          ></textarea>
+        </div>
+        <button type="submit" id="submit-btn" class="btn-submit" disabled>Отправить</button>
+      </form>
+      <div id="form-success" class="form-success" hidden>
+        <span class="success-icon">✓</span>
+        <p>Спасибо! Ваше сообщение отправлено.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Блок 6: Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Happy Cake KZ 2026</p>
+      <p class="footer-note">Портал обновляется ежедневно</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
