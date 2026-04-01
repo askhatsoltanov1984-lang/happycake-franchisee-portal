@@ -39,10 +39,79 @@ const PORTAL_DATA = {
     }
   ],
 
+  // Города — из базы франчайзи (Qoopia)
+  cities: [
+    "Абылай хан", "Акмешит", "Аксай", "Актау", "Актобе",
+    "Алмаксай", "Астана — Гульжан", "Астана — Expo", "Астана — Highvill",
+    "Астана — Кошкарбаева", "Астана — Nova City", "Астана — Сыганак",
+    "Атакент", "Атырау",
+    "Екибастуз", "Жезказган",
+    "Караганда", "Караганда — Жанур", "Каскелен",
+    "Коксетау", "Костанай",
+    "Кызылорда",
+    "Оренбург", "Оскемен",
+    "Павлодар", "Петропавловск",
+    "Рудный",
+    "Сарыарка", "Сатпаев", "Семей", "Степногорск",
+    "Талдыкорган", "Тараз", "Тастак", "Ташкент",
+    "Уральск",
+    "Шымкент",
+    "Алматы — Казахфильм", "Алматы — Central Stadium",
+    "Алматы — Керуен Сити", "Алматы — Коссы Гулулы",
+    "Алматы — Куйшидина", "Алматы — Ньютон", "Алматы — Коссы"
+  ],
+
+  // Франчайзи — из Qoopia contacts (category=franchise)
+  franchisees: [
+    { name: "Абдилова Арайлым", location: "Акмешит" },
+    { name: "Абдуллаев Алибек", location: "Коссы" },
+    { name: "Аблезов Бауыржан", location: "Кызылорда" },
+    { name: "Адилшина Венера", location: "Абылай хан, Актобе" },
+    { name: "Альдибаев Айбар", location: "Сатпаев, Атакент" },
+    { name: "Байбусынова Анар", location: "Екибастуз" },
+    { name: "Байгелдиева Алина", location: "Тараз" },
+    { name: "Батыров Нурбек", location: "Аксай, Уральск" },
+    { name: "Бахтыяр Алия", location: "Алмаксай" },
+    { name: "Баянбеков Галинур", location: "Костанай, Рудный" },
+    { name: "Букин Нуржан", location: "Семей" },
+    { name: "Буранов Галым", location: "Атырау" },
+    { name: "Галимжанов Руслан", location: "Highvill" },
+    { name: "Досанбаев Олжас", location: "Ташкент" },
+    { name: "Дюсюпова Салтанат", location: "Оскемен" },
+    { name: "Есенбеков Ернур", location: "Сарыарка, Тастак" },
+    { name: "Кайржанов Дастан", location: "Гульжан, Коксетау" },
+    { name: "Кинабаев Жасулан", location: "Жезказган" },
+    { name: "Косманов Азамат", location: "Петропавловск" },
+    { name: "Куткунов Дамир", location: "Кошкарбаева" },
+    { name: "Матжанова Айнур", location: "Куйшидина" },
+    { name: "Мұхамед Назерке", location: "Коссы Гулулы, Керуен Сити" },
+    { name: "Онгарбаев Есламбек", location: "Шымкент" },
+    { name: "Сейдахметова Анар", location: "Актау" },
+    { name: "Сейлов Амирали", location: "Expo" },
+    { name: "Сейлова Айя", location: "Nova City" },
+    { name: "Смагулов Дарын", location: "Павлодар" },
+    { name: "Смагулова Балжан", location: "Талдыкорган" },
+    { name: "Солтанов Ерлан", location: "Казахфильм" },
+    { name: "Солтанова Дана", location: "Ньютон" },
+    { name: "Таурбекова Жанар", location: "Караганда, Жанур" },
+    { name: "Тулендиева Шолпан", location: "Central Stadium" },
+    { name: "Тынымбай Дастан", location: "Каскелен" },
+    { name: "Тыштыкова Нурсулу", location: "Сыганак" },
+    { name: "Уваров Евгений", location: "Степногорск" },
+    { name: "Япиев Рамиль", location: "Оренбург" }
+  ],
+
+  projects: [
+    { value: "pnl-analytics", label: "P&L аналитика по локациям" },
+    { value: "telegram-bot", label: "Telegram-бот для клиентов" },
+    { value: "ai-assistant", label: "AI-помощник для операций" },
+    { value: "comm-system", label: "Единая система коммуникации" }
+  ],
+
   changelog: [
     {
       date: "1 апреля 2026",
-      text: "Запуск портала франчайзи v2. Три блока задач, форма пилотных записей, обратная связь."
+      text: "Портал v2: три блока задач, пилотные записи, полный список франчайзи и городов."
     },
     {
       date: "1 апреля 2026",
@@ -66,13 +135,15 @@ const STATUS_MAP = {
   done:        { label: "Выполнено", cssClass: "status-badge--done" }
 };
 
-// ===== RENDER =====
+// ===== HELPERS =====
 
 function escapeHtml(str) {
   var div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 }
+
+// ===== RENDER =====
 
 function renderHero(data) {
   var subtitle = document.getElementById("hero-subtitle");
@@ -112,13 +183,12 @@ function renderTasks(tasks) {
   if (progressGrid) progressGrid.innerHTML = progress.map(renderTaskCard).join('');
   if (plannedGrid) plannedGrid.innerHTML = planned.map(renderTaskCard).join('');
 
-  // Hide empty sections
-  if (!done.length) hide("section-done");
-  if (!progress.length) hide("section-in-progress");
-  if (!planned.length) hide("section-planned");
+  if (!done.length) hideEl("section-done");
+  if (!progress.length) hideEl("section-in-progress");
+  if (!planned.length) hideEl("section-planned");
 }
 
-function hide(id) {
+function hideEl(id) {
   var el = document.getElementById(id);
   if (el) el.style.display = "none";
 }
@@ -134,6 +204,47 @@ function renderChangelog(items) {
   }).join('');
 }
 
+// ===== POPULATE DROPDOWNS =====
+
+function populateDropdowns() {
+  // Cities
+  var citySelect = document.getElementById("pilot-city");
+  if (citySelect) {
+    PORTAL_DATA.cities.forEach(function(city) {
+      var opt = document.createElement("option");
+      opt.value = city;
+      opt.textContent = city;
+      citySelect.appendChild(opt);
+    });
+  }
+
+  // Franchisees
+  var franchiseeSelect = document.getElementById("pilot-franchisee");
+  if (franchiseeSelect) {
+    PORTAL_DATA.franchisees.forEach(function(f) {
+      var opt = document.createElement("option");
+      opt.value = f.name;
+      opt.textContent = f.name + " — " + f.location;
+      franchiseeSelect.appendChild(opt);
+    });
+  }
+
+  // Projects
+  var projectSelect = document.getElementById("pilot-project");
+  if (projectSelect) {
+    // Clear existing static options except the placeholder
+    while (projectSelect.options.length > 1) {
+      projectSelect.remove(1);
+    }
+    PORTAL_DATA.projects.forEach(function(p) {
+      var opt = document.createElement("option");
+      opt.value = p.value;
+      opt.textContent = p.label;
+      projectSelect.appendChild(opt);
+    });
+  }
+}
+
 // ===== CLICKABLE CARDS =====
 
 function initClickableCards() {
@@ -143,21 +254,17 @@ function initClickableCards() {
   var pilotSection = document.getElementById("pilot-signup");
 
   function toggleSection(card, section, otherCard, otherSection) {
-    // Toggle current
     if (section.classList.contains("visible")) {
       section.classList.remove("visible");
       card.classList.remove("active");
       return;
     }
-    // Hide other
-    if (otherSection.classList.contains("visible")) {
+    if (otherSection && otherSection.classList.contains("visible")) {
       otherSection.classList.remove("visible");
-      otherCard.classList.remove("active");
+      if (otherCard) otherCard.classList.remove("active");
     }
-    // Show current
     section.classList.add("visible");
     card.classList.add("active");
-    // Scroll into view
     setTimeout(function() {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 100);
@@ -294,6 +401,7 @@ document.addEventListener("DOMContentLoaded", function() {
   renderHero(PORTAL_DATA.hero);
   renderTasks(PORTAL_DATA.tasks);
   renderChangelog(PORTAL_DATA.changelog);
+  populateDropdowns();
   initClickableCards();
   initFeedbackForm();
   initPilotForm();
