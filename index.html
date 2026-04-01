@@ -48,7 +48,9 @@
     <section id="feedback" aria-label="Обратная связь">
       <h2 class="section-title">Обратная связь</h2>
       <p class="section-desc">Есть вопрос или предложение? Напишите нам — мы читаем каждое сообщение.</p>
-      <form id="feedback-form" method="POST" class="feedback-form">
+      <form id="feedback-form" name="franchisee-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="feedback-form">
+        <input type="hidden" name="form-name" value="franchisee-feedback">
+        <p class="sr-only"><label>Не заполняйте: <input name="bot-field"></label></p>
         <div class="form-group">
           <label for="field-name" class="sr-only">Имя</label>
           <input

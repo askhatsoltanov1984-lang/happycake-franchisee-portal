@@ -67,7 +67,7 @@ const PORTAL_DATA = {
     }
   ],
 
-  formspreeId: "PLACEHOLDER"
+  useNetlifyForms: true
 };
 
 // ===== STATUS MAP =====
@@ -129,16 +129,11 @@ function renderChangelog(items) {
   }).join('');
 }
 
-function initFeedbackForm(formspreeId) {
+function initFeedbackForm() {
   var form = document.getElementById("feedback-form");
   var btn = document.getElementById("submit-btn");
   var successEl = document.getElementById("form-success");
   if (!form || !btn) return;
-
-  // Set form action
-  if (formspreeId && formspreeId !== "PLACEHOLDER") {
-    form.action = "https://formspree.io/f/" + formspreeId;
-  }
 
   // Enable/disable button based on field content
   var fields = form.querySelectorAll("input[required], textarea[required]");
@@ -158,7 +153,7 @@ function initFeedbackForm(formspreeId) {
     fields[i].addEventListener("input", checkFields);
   }
 
-  // Form submission
+  // Form submission via Netlify Forms
   var isSubmitting = false;
 
   form.addEventListener("submit", function(e) {
@@ -167,12 +162,6 @@ function initFeedbackForm(formspreeId) {
     if (isSubmitting) return;
     if (btn.disabled) return;
 
-    // Check if formspree is configured
-    if (!formspreeId || formspreeId === "PLACEHOLDER") {
-      alert("Форма ещё не настроена. Formspree ID не указан.");
-      return;
-    }
-
     isSubmitting = true;
     btn.classList.add("btn-submit--sending");
     btn.textContent = "Отправка…";
@@ -180,10 +169,10 @@ function initFeedbackForm(formspreeId) {
 
     var formData = new FormData(form);
 
-    fetch(form.action, {
+    fetch("/", {
       method: "POST",
-      body: formData,
-      headers: { "Accept": "application/json" }
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString()
     })
     .then(function(response) {
       if (response.ok) {
@@ -218,5 +207,5 @@ document.addEventListener("DOMContentLoaded", function() {
   renderCurrentWork(PORTAL_DATA.currentWork);
   renderExpectations(PORTAL_DATA.expectations);
   renderChangelog(PORTAL_DATA.changelog);
-  initFeedbackForm(PORTAL_DATA.formspreeId);
+  initFeedbackForm();
 });
