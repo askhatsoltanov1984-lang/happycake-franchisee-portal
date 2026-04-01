@@ -87,8 +87,8 @@ img, svg { display: block; max-width: 100%; }
 }
 
 .hero-logo {
-  width: 120px;
-  height: 120px;
+  width: 138px;
+  height: 138px;
   object-fit: contain;
   margin-bottom: var(--spacing-sm);
 }
