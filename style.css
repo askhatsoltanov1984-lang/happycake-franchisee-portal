@@ -289,6 +289,7 @@ section {
 .feedback-form textarea:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(110, 168, 254, 0.15);
+  outline: 2px solid transparent;
 }
 
 .feedback-form textarea {
@@ -376,10 +377,10 @@ section {
   font-size: 0.85rem;
 }
 
-.footer-note {
+.site-footer .footer-note {
   margin-top: var(--spacing-xs);
-  font-size: 0.75rem !important;
-  opacity: 0.6;
+  font-size: 0.8rem;
+  color: #7a92b0;
 }
 
 /* ===== RESPONSIVE: TABLET (640px+) ===== */

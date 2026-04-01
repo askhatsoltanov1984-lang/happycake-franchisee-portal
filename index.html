@@ -4,10 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Happy Cake — Портал франчайзи. Актуальная информация о развитии сети.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Happy Cake — Портал франчайзи">
+  <meta property="og:description" content="Единое окно для франчайзи: статусы проектов, ожидания, обратная связь. Обновляется ежедневно.">
+  <meta property="og:url" content="https://happycake-franchisee-portal.netlify.app">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Happy Cake — Портал франчайзи">
+  <meta name="twitter:description" content="Единое окно для франчайзи: статусы проектов, ожидания, обратная связь.">
   <title>Happy Cake — Портал франчайзи</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <noscript>
+    <div style="max-width:600px;margin:40px auto;padding:20px;color:#f3f7ff;font-family:sans-serif;text-align:center;">
+      <h1>Happy Cake — Портал франчайзи</h1>
+      <p style="margin-top:12px;color:#9db0cc;">Для работы портала необходим JavaScript. Пожалуйста, включите его в настройках браузера.</p>
+    </div>
+  </noscript>
 
   <!-- Блок 1: Hero -->
   <header class="hero" id="hero">
@@ -60,7 +78,6 @@
             placeholder="Имя"
             required
             autocomplete="name"
-            aria-label="Ваше имя"
           >
         </div>
         <div class="form-group">
@@ -72,7 +89,7 @@
             placeholder="Город"
             required
             autocomplete="address-level2"
-            aria-label="Ваш город"
+          
           >
         </div>
         <div class="form-group">
@@ -83,7 +100,7 @@
             placeholder="Ваш вопрос или предложение"
             required
             rows="4"
-            aria-label="Ваше сообщение"
+          
           ></textarea>
         </div>
         <button type="submit" id="submit-btn" class="btn-submit" disabled>Отправить</button>
