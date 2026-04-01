@@ -334,6 +334,10 @@ section {
 }
 
 /* Form success state */
+.form-success[hidden] {
+  display: none;
+}
+
 .form-success {
   display: flex;
   align-items: center;
