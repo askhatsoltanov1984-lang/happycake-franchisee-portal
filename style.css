@@ -87,8 +87,8 @@ img, svg { display: block; max-width: 100%; }
 }
 
 .hero-logo {
-  width: 138px;
-  height: 138px;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
   margin-bottom: var(--spacing-sm);
 }
@@ -488,8 +488,8 @@ section {
   }
 
   .hero-logo {
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
   }
 
   .hero-title {
@@ -520,8 +520,8 @@ section {
   }
 
   .hero-logo {
-    width: 180px;
-    height: 180px;
+    width: 225px;
+    height: 225px;
   }
 
   .hero-title {
