@@ -269,11 +269,6 @@ section {
   background: rgba(17, 29, 48, 1);
 }
 
-.card__icon {
-  font-size: 1.5rem;
-  margin-bottom: var(--spacing-xs);
-}
-
 .card__action {
   display: inline-block;
   margin-top: var(--spacing-sm);
